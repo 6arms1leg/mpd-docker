@@ -1,0 +1,30 @@
+# This configuration file only contains the bare minimum of settings necessary
+# to run MPD.
+# You can change these settings and add new ones but mind the non-modifiable
+# settings at the end of this file.
+# For available options see
+# [MPD User’s Manual](https://www.musicpd.org/doc/html/user.html#configuration)
+# and the vanilla `/etc/mpd.conf` file inside the Docker container.
+
+bind_to_address         "::"
+audio_output {
+	type            "alsa"
+	name            "ALSA Device"
+	# If no further settings are provided here, MPD tries to autodetect an
+	# ALSA device
+#	device          "hw:0,0"
+#	mixer_type      "none" # `none` for bit-perfect playback
+}
+
+# The following *non-modifiable* settings are necessary for the correct setup
+# of this project.
+# **Do not change them!**
+
+music_directory         "~/music"
+playlist_directory      "~/.mpd/playlists"
+state_file              "~/.mpd/state"
+zeroconf_enabled        "no"
+database {
+	plugin          "simple"
+	path            "~/.mpd/database"
+}

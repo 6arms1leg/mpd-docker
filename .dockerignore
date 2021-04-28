@@ -1,0 +1,6 @@
+*
+
+!/Dockerfile
+!/.dockerignore
+!/mpd.conf.template
+!/start.sh

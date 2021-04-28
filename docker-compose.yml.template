@@ -1,0 +1,23 @@
+version: '3'
+services:
+  mpd:
+    image: mpd:latest
+    container_name: mpd
+    build: ./
+    ports:
+      - "${MPD_PORT}:6600"
+    volumes:
+      - ${MPD_BASE_PATH}/mpd/mpd.conf:/mpd/mpd.conf:ro
+      - ${MPD_BASE_PATH}/mpd/mpd/:/mpd/.mpd/
+      # Symlinks do not work with Docker.  To map multiple locations into MPD’s
+      # music directory create each as a seperate volume (mounted in its own
+      # directory under `/mpd/music/`).
+      - ${MPD_BASE_PATH}/mpd/music/:/mpd/music/:ro
+    devices:
+      - /dev/snd/:/dev/snd/
+    environment:
+      - PUID=${MPD_UID}
+      - PGID=${MPD_GID}
+    cap_add:
+      - SYS_NICE
+    restart: unless-stopped

@@ -1,0 +1,9 @@
+# Build process files
+/build
+
+# Deployment data
+/mpd/
+
+# Deployment configuration files
+/docker-compose.yml
+/.env
